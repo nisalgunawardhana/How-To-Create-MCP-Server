@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/nisalgunawardhana-how-to-create-mcp-server-badge.png)](https://mseep.ai/app/nisalgunawardhana-how-to-create-mcp-server)
+
 # How to Create MCP Server Using .NET
 
 This guide will help you set up a basic MCP (Model Context Protocol) server in .NET, configure it in VS Code, and interact with it using Copilot Chat.
