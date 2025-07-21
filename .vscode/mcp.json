@@ -1,13 +1,13 @@
 {
-        "servers": {
-          "Hello-SriLankaServer": {
-            "type": "stdio",
-            "command": "dotnet",
-            "args": [
-              "run",
-              "--project",
-              "${workspaceFolder}/HelloSriLankaServer/HelloSriLankaServer.csproj"
-            ]
-          }
-        }
-      }
+  "servers": {
+    "Hello-SriLankaServer": {
+      "type": "stdio",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "C:/Users/Rehan/Desktop/How-To-Create-MCP-Server/HelloSriLankaServer/HelloSriLankaServer.csproj"
+      ]
+    }
+  }
+}

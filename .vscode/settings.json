@@ -1,0 +1,9 @@
+{
+    "chat.mcp.serverSampling": {
+        "How-To-Create-MCP-Server/.vscode/mcp.json: Hello-SriLankaServer": {
+            "allowedModels": [
+                "github.copilot-chat/gpt-4.1"
+            ]
+        }
+    }
+}
