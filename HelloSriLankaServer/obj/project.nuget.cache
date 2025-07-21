@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KgiUBwrZoJg=",
+  "dgSpecHash": "bmIDrx8jzhU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Rehan\\Desktop\\MCP\\HelloSriLankaServer\\HelloSriLankaServer.csproj",
+  "projectFilePath": "C:\\Users\\Rehan\\Desktop\\How-To-Create-MCP-Server\\HelloSriLankaServer\\HelloSriLankaServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rehan\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\9.7.1\\microsoft.extensions.ai.abstractions.9.7.1.nupkg.sha512",
     "C:\\Users\\Rehan\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.7\\microsoft.extensions.configuration.9.0.7.nupkg.sha512",

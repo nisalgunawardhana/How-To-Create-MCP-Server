@@ -1883,11 +1883,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rehan\\Desktop\\MCP\\HelloSriLankaServer\\HelloSriLankaServer.csproj",
+      "projectUniqueName": "C:\\Users\\Rehan\\Desktop\\How-To-Create-MCP-Server\\HelloSriLankaServer\\HelloSriLankaServer.csproj",
       "projectName": "HelloSriLankaServer",
-      "projectPath": "C:\\Users\\Rehan\\Desktop\\MCP\\HelloSriLankaServer\\HelloSriLankaServer.csproj",
+      "projectPath": "C:\\Users\\Rehan\\Desktop\\How-To-Create-MCP-Server\\HelloSriLankaServer\\HelloSriLankaServer.csproj",
       "packagesPath": "C:\\Users\\Rehan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rehan\\Desktop\\MCP\\HelloSriLankaServer\\obj\\",
+      "outputPath": "C:\\Users\\Rehan\\Desktop\\How-To-Create-MCP-Server\\HelloSriLankaServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Rehan\\AppData\\Roaming\\NuGet\\NuGet.Config"
