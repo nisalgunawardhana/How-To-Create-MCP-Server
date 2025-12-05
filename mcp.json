@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+        "HelloSriLankaServer": {
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/HelloSriLankaServer/HelloSriLankaServer.csproj"
+            ]
+        }
+    }
+}
