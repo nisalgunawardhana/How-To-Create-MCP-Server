@@ -116,6 +116,7 @@ How-To-create-MCP-Server/
 │   ├── image1.png
 │   └── image2.png
 ├── README.md
+├── .gitignore.md
 └── LICENSE
 ```
 
@@ -192,6 +193,7 @@ public static class HelloTool
   │   └── image2.png
   ├── .vscode/
   ├── README.md
+  ├── .gitignore.md
   └── LICENSE
   ```
 
@@ -333,14 +335,3 @@ Follow me on social media for more sessions, tech tips, and giveaways:
 - [YouTube](https://www.youtube.com/channel/UCNP5-zR4mN6zkiJ9pVCM-1w) — Video tutorials and sessions
 
 Feel free to connect and stay updated!
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-**Tip:**  
-You can add more tools to your MCP server by extending the `HelloTool` class in `Program.cs`.
