@@ -1,0 +1,31 @@
+name: Branch Protection Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-target-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if PR targets main directly
+        run: |
+          echo "❌ ERROR: Direct PRs to main branch are not allowed!"
+          echo ""
+          echo "🔄 Required Workflow:"
+          echo "  1. feature-branch → submit → main"
+          echo ""
+          echo "📋 What you need to do:"
+          echo "  1. Close this PR"
+          echo "  2. Create a new PR targeting the 'submit' branch"
+          echo "  3. After review and approval, changes will be merged to main"
+          echo ""
+          echo "📖 For detailed instructions, see CONTRIBUTING.md"
+          echo ""
+          exit 1
+      
+      - name: Display workflow information
+        if: failure()
+        run: |
+          echo "::error::This PR targets the main branch directly, which is not allowed."
+          echo "::error::Please create a new PR targeting the 'submit' branch instead."

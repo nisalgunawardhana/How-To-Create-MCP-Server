@@ -43,6 +43,18 @@ This guide will help you set up a basic MCP (Model Context Protocol) server in .
 **Step 02**
 ![Add Tool in Copilot Chat](images/image5.png)
 
+---
+
+## Pull Request Comment Guidelines
+
+When you create your Pull Request (PR), please add a comment including **your full name** and **email address**. This helps us track contributions and contact you if needed.
+
+**Example:**
+```
+Full Name: Nisal Gunawardhana
+Email: info@nisalgunawardhana.com
+```
+
 > **Note:** Please do **not** open PRs directly to the `main` branch. Always target the `Submit` branch for contributions.
 **Follow the steps below to set up and run the MCP server.**
 
@@ -85,7 +97,7 @@ Install the necessary NuGet packages:
 
 ```zsh
 dotnet add package ModelContextProtocol --prerelease
-dotnet add package Microsoft.Extensions.Hosting --prerelease
+dotnet add package Microsoft.Extensions.Hosting 
 ```
 
 
@@ -104,6 +116,7 @@ How-To-create-MCP-Server/
 │   ├── image1.png
 │   └── image2.png
 ├── README.md
+├── .gitignore.md
 └── LICENSE
 ```
 
@@ -162,9 +175,33 @@ cd ..
 ```
 
 1. In your project root, create a `.vscode` directory:
-    ```zsh
-    mkdir -p .vscode
-    ```
+
+  Before creating the `.vscode` directory, navigate back to the project root if you're inside the `HelloSriLankaServer` folder:
+
+  ```zsh
+  cd ..
+  ```
+
+  ```zsh
+  mkdir -p .vscode
+  ```
+
+  After creating the `.vscode` directory, your folder structure should look like this:
+
+  ```text
+  How-To-create-MCP-Server/
+  ├── HelloSriLankaServer/
+  │   ├── Program.cs
+  │   ├── HelloSriLankaServer.csproj
+  │   └── (other project files)
+  ├── images/
+  │   ├── image1.png
+  │   └── image2.png
+  ├── .vscode/
+  ├── README.md
+  ├── .gitignore.md
+  └── LICENSE
+  ```
 
 2. Inside `.vscode`, create a file named `mcp.json` and add your server configuration.
 
@@ -180,7 +217,7 @@ cd ..
     - Enter the server name `"Hello-SriLankaServer"` and press Enter.  
       ![Enter Server Name](images/image9.png)
 
-    - The `mcp.json` file will be populated automatically. Replace its contents with the following:
+    - The `mcp.json` file will be populated automatically. Replace missing contents with the following:
 
       ```json
       {
@@ -197,7 +234,7 @@ cd ..
         }
       }
       ```
-      ```
+   
       > **Note:** `${workspaceFolder}` will automatically resolve to your project root. If it does not work, replace it with the actual path to your `.csproj` file (right-click the file in VS Code and select "Copy Path").
 
 ## 6. Run the MCP Server(test if it's work)
@@ -211,12 +248,14 @@ dotnet run
 
 ## 7. Add the Tool in Copilot Chat
 
+> **Note:** Before adding the tool in Copilot Chat, make sure your MCP server is running. Then, open the `mcp.json` file in VS Code. You will see a small **"Add Tool"** button appear just below the(2nd Line) `"servers": {` line in the JSON code—click this button to proceed.
+
 1. Open Copilot Chat in VS Code.
 2. Click the **gear icon** (⚙️) or the **"Add Tool"** button.
-3. Select your MCP server (`Hello-Server`) from the list.
+3. Select your MCP server (`Hello-SriLankaServe`) from the list.
 
 **Image Example:**
-> **Note:** The example images may display "LocationServer" or a similar name, but it actually refers to your MCP server (`HelloSriLankaServer`).
+> **Note:** The example images may display "LocationServer" or a similar name, but it actually refers to your MCP server (`Hello-SriLankaServer`).
 ![Add Tool in Copilot Chat](images/image1.png)
 ![Add Tool in Copilot Chat](images/image2.png)
 
@@ -225,11 +264,13 @@ dotnet run
 
 ## 8. Send a Message Using Copilot Chat
 
-1. In Copilot Chat, select the `HelloSriLankaServer` tool.
+1. In Copilot Chat, select the `Hello-SriLankaServer` tool.
 2. Type a message to invoke your tool, for example:
     ```
-    Can you Say hello from the tool
+    Can you Say hello to Sri Lank
     ```
+    > **Note:** You may need to grant permission or continue when prompted by VS Code. Sometimes, Copilot Chat or other AI tools do not have access to the terminal or workspace by default. If you see a prompt asking for access, make sure to allow it so your tool can run successfully.
+
 3. You should see a reply from your MCP server in the chat.
     ```
     Hello Sri Lanka !
@@ -249,6 +290,23 @@ You will receive a response from your MCP server in the Copilot Chat window.
 For a more advanced example, you can explore the [Try-mcp-location-server-demo](https://github.com/nisalgunawardhana/Try-mcp-location-server-demo) repository. This demo showcases how to build and interact with a location-based MCP server using .NET.
 
 ---
+## 🎁 Share and Win Amazing Tech Swag!
+
+Love this project? Share it with your friends and community for a chance to win exclusive tech swag!
+
+- **How to participate:**  
+  Fill out [this form](https://forms.gle/eGxg1bAZgqwq6mPw7) to request your personalized share link. We'll send your unique link to your email within 2–3 business days.
+
+- **Share and Win:**  
+  Once you receive your link, share it with your friends. Ask them to complete the project and include your referral link when they submit.
+
+- **Why share?**  
+  The more friends who use your referral link, the higher your chances to win cool tech goodies—stickers, shirts, and more!
+
+> **Note:** Make sure your email is visible in your GitHub profile or mention it in the form when you request your link.
+
+Stay tuned—winners will be announced in the Discussions tab!
+
 
 ## Additional Learning Resources
 
@@ -283,14 +341,3 @@ Follow me on social media for more sessions, tech tips, and giveaways:
 - [YouTube](https://www.youtube.com/channel/UCNP5-zR4mN6zkiJ9pVCM-1w) — Video tutorials and sessions
 
 Feel free to connect and stay updated!
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-**Tip:**  
-You can add more tools to your MCP server by extending the `HelloTool` class in `Program.cs`.
