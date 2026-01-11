@@ -34,6 +34,15 @@ jobs:
           script: |
             const issueNumber = context.issue.number;
             
+            // Add labels if they don't exist
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['submission', 'pending review']
+            });
+            console.log('Added submission and pending review labels');
+            
             // Assign the issue to nisalgunawardhana
             await github.rest.issues.addAssignees({
               owner: context.repo.owner,
