@@ -16,8 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check Issue Labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const labels = context.payload.issue.labels.map(label => label.name);
+            console.log('Issue labels:', labels);
+            console.log('Has submission label:', labels.includes('submission'));
+            console.log('Action:', context.payload.action);
+
       - name: Handle New Submission
-        if: github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'submission')
+        if: github.event.action == 'opened' && (contains(github.event.issue.labels.*.name, 'submission') || startsWith(github.event.issue.title, '[SUBMISSION]'))
         uses: actions/github-script@v7
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -71,7 +81,7 @@ jobs:
             console.log('Welcome comment added successfully');
 
       - name: Handle Approved Submission
-        if: github.event.action == 'closed' && github.event.issue.state_reason == 'completed' && contains(github.event.issue.labels.*.name, 'submission')
+        if: github.event.action == 'closed' && github.event.issue.state_reason == 'completed' && (contains(github.event.issue.labels.*.name, 'submission') || startsWith(github.event.issue.title, '[SUBMISSION]'))
         uses: actions/github-script@v7
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
