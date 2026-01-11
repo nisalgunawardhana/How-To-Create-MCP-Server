@@ -23,11 +23,22 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
+            const issueNumber = context.issue.number;
+            
+            // Assign the issue to nisalgunawardhana
+            await github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              assignees: ['nisalgunawardhana']
+            });
+            console.log('Assigned issue to nisalgunawardhana');
+            
             // Add welcome comment
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
+              issue_number: issueNumber,
               body: `## 🎉 Thank you for your submission!
               
               Hello @${context.payload.issue.user.login}! 👋
@@ -36,19 +47,26 @@ jobs:
               
               ### Review Process
               - ✅ Your submission has been labeled with \`pending review\` and \`submission\`
-              - 📋 A maintainer will review your work within 2-3 business days
+              - 👤 This issue has been assigned to @nisalgunawardhana for review
+              - 📋 Your work will be reviewed within 2-3 business days
               - 💬 You may receive feedback or questions during the review
-              - 🎖️ Once approved, your digital badge will be issued automatically
+              - 🎖️ **Once approved and closed by @nisalgunawardhana, your digital badge will be automatically issued in the comments**
               
               ### What You Can Do
               - Keep an eye on this issue for any feedback
               - Respond promptly to any questions from reviewers
               - Make sure your pull request is up to date
               
+              ### Badge Issuance
+              When @nisalgunawardhana closes this issue as completed:
+              - 🎊 A congratulations comment with your digital badge will be posted automatically
+              - 🏷️ Labels will be updated to \`approved\` and \`completed\`
+              - 📧 You'll receive instructions on how to display your badge
+              
               Thank you for your patience and for contributing to this project! 🚀
               
               ---
-              *This is an automated message. A human will review your submission soon.*`
+              *This is an automated message. @nisalgunawardhana will review your submission soon.*`
             });
             
             console.log('Welcome comment added successfully');
