@@ -11,14 +11,13 @@ permissions:
 jobs:
   handle-submission:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.labels.*.name, 'submission')
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Handle New Submission
-        if: github.event.action == 'opened'
+        if: github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'submission')
         uses: actions/github-script@v7
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -72,7 +71,7 @@ jobs:
             console.log('Welcome comment added successfully');
 
       - name: Handle Approved Submission
-        if: github.event.action == 'closed' && github.event.issue.state_reason == 'completed'
+        if: github.event.action == 'closed' && github.event.issue.state_reason == 'completed' && contains(github.event.issue.labels.*.name, 'submission')
         uses: actions/github-script@v7
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
