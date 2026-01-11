@@ -1,0 +1,166 @@
+name: Issue Submission Automation
+
+on:
+  issues:
+    types: [opened, closed]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  handle-submission:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'submission')
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Handle New Submission
+        if: github.event.action == 'opened'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            // Add welcome comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## 🎉 Thank you for your submission!
+              
+              Hello @${context.payload.issue.user.login}! 👋
+              
+              We've received your submission and it's now under review. Here's what happens next:
+              
+              ### Review Process
+              - ✅ Your submission has been labeled with \`pending review\` and \`submission\`
+              - 📋 A maintainer will review your work within 2-3 business days
+              - 💬 You may receive feedback or questions during the review
+              - 🎖️ Once approved, your digital badge will be issued automatically
+              
+              ### What You Can Do
+              - Keep an eye on this issue for any feedback
+              - Respond promptly to any questions from reviewers
+              - Make sure your pull request is up to date
+              
+              Thank you for your patience and for contributing to this project! 🚀
+              
+              ---
+              *This is an automated message. A human will review your submission soon.*`
+            });
+            
+            console.log('Welcome comment added successfully');
+
+      - name: Handle Approved Submission
+        if: github.event.action == 'closed' && github.event.issue.state_reason == 'completed'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const issueNumber = context.issue.number;
+            const issue = context.payload.issue;
+            const closedBy = context.payload.sender.login;
+            
+            // Only allow nisalgunawardhana to close and assign badges
+            if (closedBy !== 'nisalgunawardhana') {
+              console.log(`Issue closed by ${closedBy}, but only nisalgunawardhana can assign badges.`);
+              
+              // Add a comment explaining this
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `⚠️ **Note:** This issue was closed by @${closedBy}, but digital badges can only be issued by @nisalgunawardhana.
+                
+                If this submission should be approved, please wait for @nisalgunawardhana to review and close the issue.`
+              });
+              
+              return; // Exit without assigning badge
+            }
+            
+            // Extract user information from issue body
+            const body = issue.body;
+            let userName = 'Contributor';
+            let userEmail = '';
+            
+            // Try to extract name and email from the issue body
+            const nameMatch = body.match(/Full Name[:\s]+([^\n]+)/i);
+            const emailMatch = body.match(/Email Address[:\s]+([^\n]+)/i);
+            
+            if (nameMatch) userName = nameMatch[1].trim();
+            if (emailMatch) userEmail = emailMatch[1].trim();
+            
+            // Use custom badge image from repository
+            const badgeUrl = `https://raw.githubusercontent.com/${context.repo.owner}/${context.repo.repo}/main/images/badge.png`;
+            const completionDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            // Add congratulations comment with badge
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: `## 🎊 Congratulations ${userName}! 🎊
+              
+              Your submission has been **approved** by @nisalgunawardhana! You've successfully completed the MCP Server tutorial.
+              
+              ### 🎖️ Your Digital Badge
+              
+              ![MCP Server Completion Badge](${badgeUrl})
+              
+              **Badge Details:**
+              - **Name:** ${userName}
+              - **Achievement:** MCP Server - .NET Implementation
+              - **Completion Date:** ${completionDate}
+              - **Repository:** ${context.repo.owner}/${context.repo.repo}
+              - **Approved by:** @nisalgunawardhana
+              
+              ### How to Display Your Badge
+              
+              You can add this badge to your GitHub profile or project README:
+              
+              **Markdown:**
+              \`\`\`markdown
+              ![MCP Server Completed](${badgeUrl})
+              \`\`\`
+              
+              **HTML:**
+              \`\`\`html
+              <img src="${badgeUrl}" alt="MCP Server Completed" />
+              \`\`\`
+              
+              ### Share Your Achievement! 🚀
+              
+              Feel free to share your accomplishment on social media:
+              - Twitter/X: "I just completed the MCP Server tutorial! 🎉 #MCPServer #DotNet #GitHub"
+              - LinkedIn: Share your learning experience and tag the maintainers
+              
+              Thank you for your contribution and for being part of our community! Keep building amazing things! 💪
+              
+              ---
+              *If you have any questions or feedback, feel free to reach out.*`
+            });
+            
+            // Add labels: approved, completed
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['approved', 'completed']
+            });
+            
+            // Remove pending review label
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                name: 'pending review'
+              });
+              console.log('Removed pending review label');
+            } catch (error) {
+              console.log('pending review label may not exist:', error.message);
+            }
+            
+            console.log('Badge issued and labels updated successfully by nisalgunawardhana');
