@@ -56,6 +56,60 @@ Email: info@nisalgunawardhana.com
 ```
 
 > **Note:** Please do **not** open PRs directly to the `main` branch. Always target the `Submit` branch for contributions.
+
+---
+
+## 🎖️ How to Claim Your Digital Badge
+
+After completing the tutorial and submitting your pull request, you can claim your digital badge by following these steps:
+
+### Step 1: Complete Your Pull Request
+1. Ensure your pull request is submitted to the `Submit` branch (as described above)
+2. Make sure your code implements the MCP server functionality
+3. Include your full name and email in the PR comment
+
+### Step 2: Submit an Issue to Claim Your Badge
+1. Go to the [Issues tab](https://github.com/nisalgunawardhana/How-To-Create-MCP-Server/issues)
+2. Click on **"New Issue"**
+3. Select the **"🎯 Submission for Digital Badge"** template
+4. Fill out the form with:
+   - Your full name (as it should appear on the badge)
+   - Your email address
+   - Your GitHub username
+   - Link to your pull request
+   - A brief summary of what you implemented
+   - (Optional) Challenges you faced and feedback
+
+5. Make sure to check all the requirement boxes at the bottom
+6. Click **"Submit new issue"**
+
+### Step 3: Automated Review Process
+Once you submit your issue:
+- ✅ An automated comment will acknowledge your submission
+- 🏷️ Your issue will be labeled with `submission` and `pending review`
+- 📋 A maintainer will review your work within 2-3 business days
+- 💬 You may receive feedback or questions
+
+### Step 4: Receive Your Digital Badge
+When your submission is approved:
+- 🎊 The issue will be closed as completed **by @nisalgunawardhana**
+- 🎖️ A digital badge will be automatically generated and posted in the issue comments
+- 🏷️ Labels will be updated: `approved` and `completed` will be added, `pending review` will be removed
+- 📧 You'll receive the badge with instructions on how to display it
+
+> **Note:** Digital badges are only issued when the issue is closed by @nisalgunawardhana to ensure proper verification of submissions.
+
+### Badge Display
+You'll receive:
+- A custom digital badge image that you can add to your GitHub profile
+- Markdown code to easily embed the badge in your README files
+- HTML code for websites or portfolios
+- Completion date and achievement details
+
+**Example of what you'll receive:**
+
+![MCP Server Completion Badge](images/badge.png)
+
 **Follow the steps below to set up and run the MCP server.**
 
 ---

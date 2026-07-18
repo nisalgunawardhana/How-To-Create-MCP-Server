@@ -1,0 +1,103 @@
+name: 🎯 Submission for Digital Badge
+description: Submit your completed work to claim your digital badge
+title: "[SUBMISSION] - Your Name"
+labels: ["submission", "pending review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Submission Form
+        Thank you for completing the MCP Server tutorial! Fill out this form to submit your work and claim your digital badge.
+
+  - type: input
+    id: full-name
+    attributes:
+      label: Full Name
+      description: Your full name as it should appear on the digital badge
+      placeholder: e.g., John Doe
+    validations:
+      required: true
+
+  - type: input
+    id: email
+    attributes:
+      label: Email Address
+      description: Your email address for badge delivery
+      placeholder: e.g., john.doe@example.com
+    validations:
+      required: true
+
+  - type: input
+    id: github-username
+    attributes:
+      label: GitHub Username
+      description: Your GitHub username
+      placeholder: e.g., johndoe
+    validations:
+      required: true
+
+  - type: input
+    id: pull-request
+    attributes:
+      label: Pull Request Link
+      description: Link to your merged or open pull request
+      placeholder: e.g., https://github.com/nisalgunawardhana/How-To-Create-MCP-Server/pull/123
+    validations:
+      required: true
+
+  - type: textarea
+    id: completion-summary
+    attributes:
+      label: Completion Summary
+      description: Briefly describe what you've implemented and learned
+      placeholder: |
+        - Created a .NET MCP server with [features]
+        - Implemented [specific functionality]
+        - Learned about [concepts]
+    validations:
+      required: true
+
+  - type: textarea
+    id: challenges
+    attributes:
+      label: Challenges Faced (Optional)
+      description: Any challenges you encountered and how you solved them
+      placeholder: Describe any challenges and solutions...
+    validations:
+      required: false
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Feedback (Optional)
+      description: Any feedback or suggestions for improving this tutorial
+      placeholder: Your feedback here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: Submission Requirements
+      description: Please confirm you have completed the following
+      options:
+        - label: I have created a pull request to the Submit branch
+          required: true
+        - label: I have completed the MCP server implementation
+          required: true
+        - label: I have tested my implementation
+          required: true
+        - label: I have read the contribution guidelines
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### What happens next?
+        1. ✅ Your submission will be reviewed by the maintainers
+        2. 📝 You'll receive feedback if any changes are needed
+        3. 🎖️ Once approved, your digital badge will be issued automatically
+        4. 🎉 Your badge will be available in the issue comments
+        
+        Thank you for your participation!
